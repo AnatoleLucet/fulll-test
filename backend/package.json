@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "type": "module",
+  "scripts": {
+    "build:cli": "esbuild src/cli.ts --bundle --platform=node --target=node20 --format=esm --outfile=dist/cli.js --minify --external:pg",
+    "dev:cli": "tsx src/cli.ts",
+    "test": "pnpm run test:unit && pnpm run test:e2e",
+    "test:unit": "vitest run src",
+    "test:e2e": "NODE_OPTIONS='--import=tsx/esm' cucumber-js --config test/cucumber.js",
+    "lint": "pnpm run lint:syntax && npm run lint:format && npm run lint:type",
+    "lint:fix": "pnpm run lint:syntax:fix && npm run lint:format:fix",
+    "lint:syntax": "oxlint src",
+    "lint:syntax:fix": "oxlint src --fix",
+    "lint:format": "oxfmt src",
+    "lint:format:fix": "oxfmt src --write",
+    "lint:type": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.8.1",
+    "@types/node": "^20.0.0",
+    "@types/pg": "^8.20.0",
+    "drizzle-kit": "^0.31.9",
+    "esbuild": "^0.28.0",
+    "oxfmt": "^0.45.0",
+    "oxlint": "^0.16.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.3.0",
+    "vitest": "^4.1.4"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.20.0"
+  }
+}

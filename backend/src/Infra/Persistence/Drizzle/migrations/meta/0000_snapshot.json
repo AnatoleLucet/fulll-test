@@ -1,0 +1,151 @@
+{
+  "id": "eb7727ad-6aee-4ae5-9e8d-a0d50a010bee",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.fleet_vehicles": {
+      "name": "fleet_vehicles",
+      "schema": "",
+      "columns": {
+        "fleet_id": {
+          "name": "fleet_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vehicle_plate_number": {
+          "name": "vehicle_plate_number",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fleet_vehicles_fleet_id_fleets_id_fk": {
+          "name": "fleet_vehicles_fleet_id_fleets_id_fk",
+          "tableFrom": "fleet_vehicles",
+          "tableTo": "fleets",
+          "columnsFrom": ["fleet_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "fleet_vehicles_vehicle_plate_number_vehicles_plate_number_fk": {
+          "name": "fleet_vehicles_vehicle_plate_number_vehicles_plate_number_fk",
+          "tableFrom": "fleet_vehicles",
+          "tableTo": "vehicles",
+          "columnsFrom": ["vehicle_plate_number"],
+          "columnsTo": ["plate_number"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "fleet_vehicles_fleet_id_vehicle_plate_number_pk": {
+          "name": "fleet_vehicles_fleet_id_vehicle_plate_number_pk",
+          "columns": ["fleet_id", "vehicle_plate_number"]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.fleets": {
+      "name": "fleets",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.vehicles": {
+      "name": "vehicles",
+      "schema": "",
+      "columns": {
+        "plate_number": {
+          "name": "plate_number",
+          "type": "varchar(255)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "numeric(10, 8)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "numeric(11, 8)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "altitude": {
+          "name": "altitude",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

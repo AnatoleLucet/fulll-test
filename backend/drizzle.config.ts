@@ -1,0 +1,16 @@
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  schema: "./src/Infra/Persistence/Drizzle/schema.ts",
+  out: "./src/Infra/Persistence/Drizzle/migrations",
+  dialect: "postgresql",
+  dbCredentials: {
+    host: process.env.DB_HOST || "localhost",
+    port: parseInt(process.env.DB_PORT || "5432"),
+    database: process.env.DB_NAME || "fleet_management",
+    user: process.env.DB_USER || "postgres",
+    password: process.env.DB_PASSWORD || "password",
+
+    ssl: false, // just for the assignment obsly.
+  },
+});
