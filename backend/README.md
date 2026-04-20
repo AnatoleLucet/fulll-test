@@ -23,7 +23,7 @@ cp .env.dist .env  # edit with your creds
 pnpm db:generate
 pnpm db:migrate
 
-# cli (auto-migrates database on first run)
+# cli
 pnpm dev:cli create user-123
 pnpm dev:cli register-vehicle fleet-1 ABC-123
 pnpm dev:cli localize-vehicle fleet-1 ABC-123 48.8566 2.3522
